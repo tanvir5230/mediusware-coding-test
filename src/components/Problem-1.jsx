@@ -129,14 +129,27 @@ const Problem1 = () => {
             </thead>
             <tbody>
               {show === "all" &&
-                todos.map((todo) => {
-                  return (
+                todos
+                  .sort((a, b) => {
+                    const statusOrder = [
+                      "active",
+                      "completed",
+                      "pending",
+                      "archive",
+                    ];
+                    const statusA = statusOrder.indexOf(a.status);
+                    const statusB = statusOrder.indexOf(b.status);
+                    if (statusA !== statusB) {
+                      return statusA - statusB;
+                    }
+                    return a.name.localeCompare(b.name);
+                  })
+                  .map((todo) => (
                     <tr key={todo.id}>
                       <td>{todo.name}</td>
                       <td>{todo.status}</td>
                     </tr>
-                  );
-                })}
+                  ))}
               {show === "active" &&
                 todos
                   .filter((todo) => todo.status === "active")
