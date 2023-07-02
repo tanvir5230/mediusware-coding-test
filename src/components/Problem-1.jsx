@@ -24,12 +24,12 @@ const initialTodos = [
 ];
 
 const Problem1 = () => {
+  const [todos, dispatch] = useReducer(taskReducer, initialTodos);
   const [task, setTask] = useState({
-    id: initialTodos.length + 1,
+    id: 0,
     name: "",
     status: "",
   });
-  const [todos, dispatch] = useReducer(taskReducer, initialTodos);
   const [show, setShow] = useState("all");
 
   const handleInputChange = (e) => {
@@ -44,7 +44,7 @@ const Problem1 = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     if (task.name.length > 0 && task.status.length > 0) {
-      dispatch({ type: "ADD", toAdd: { ...task } });
+      dispatch({ type: "ADD", toAdd: { ...task, id: todos.length + 1 } });
     } else {
       alert("you have to add a task name and status of the task. Try again!!!");
     }
