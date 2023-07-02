@@ -128,14 +128,37 @@ const Problem1 = () => {
               </tr>
             </thead>
             <tbody>
-              {todos.map((todo) => {
-                return (
-                  <tr key={todo.id}>
-                    <td>{todo.name}</td>
-                    <td>{todo.status}</td>
-                  </tr>
-                );
-              })}
+              {show === "all" &&
+                todos.map((todo) => {
+                  return (
+                    <tr key={todo.id}>
+                      <td>{todo.name}</td>
+                      <td>{todo.status}</td>
+                    </tr>
+                  );
+                })}
+              {show === "active" &&
+                todos
+                  .filter((todo) => todo.status === "active")
+                  .map((todo) => {
+                    return (
+                      <tr key={todo.id}>
+                        <td>{todo.name}</td>
+                        <td>{todo.status}</td>
+                      </tr>
+                    );
+                  })}
+              {show === "completed" &&
+                todos
+                  .filter((todo) => todo.status === "completed")
+                  .map((todo) => {
+                    return (
+                      <tr key={todo.id}>
+                        <td>{todo.name}</td>
+                        <td>{todo.status}</td>
+                      </tr>
+                    );
+                  })}
             </tbody>
           </table>
         </div>
