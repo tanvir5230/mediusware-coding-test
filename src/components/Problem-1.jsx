@@ -126,6 +126,8 @@ const Problem1 = () => {
                 <th scope="col">Name</th>
                 <th scope="col">Status</th>
               </tr>
+            </thead>
+            <tbody>
               {todos.map((todo) => {
                 return (
                   <tr key={todo.id}>
@@ -134,8 +136,7 @@ const Problem1 = () => {
                   </tr>
                 );
               })}
-            </thead>
-            <tbody></tbody>
+            </tbody>
           </table>
         </div>
       </div>
